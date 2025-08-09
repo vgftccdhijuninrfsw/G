@@ -1,0 +1,156 @@
+<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Panel Control V1.9</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><style>:root{--primary-blue:#0066ff;--light-blue:#e6f0ff;--dark-blue:#0044aa;--success-green:#00cc66;--warning-yellow:#ffcc00;--danger-red:#ff0033;--text-dark:#333;--text-light:#666;--background-light:#f8fafc;--card-bg:#ffffff;--border-color:#e1e8ed;--sidebar-bg:#1a2236;--sidebar-hover:#26334d;--sidebar-text:#a3b1cc;--sidebar-active:#0066ff}*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif}body{background-color:var(--background-light);min-height:100vh;overflow-x:hidden;display:flex;flex-direction:column;color:var(--text-dark);position:relative;line-height:1.6;background-image:radial-gradient(circle,rgba(0,68,170,.05) 1px,transparent 1px);background-size:20px 20px}header{background-color:var(--card-bg);box-shadow:0 2px 15px rgba(0,82,204,.1);padding:15px 30px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}.logo-container{display:flex;align-items:center;gap:15px}.logo{height:40px;filter:drop-shadow(0 2px 4px rgba(0,0,0,.2))}.panel-name{font-size:1.4rem;font-weight:700;color:var(--primary-blue);letter-spacing:.5px;text-shadow:0 1px 2px rgba(0,0,0,.1)}.menu-toggle{background:var(--light-blue);border:none;font-size:1.5rem;color:var(--primary-blue);cursor:pointer;padding:5px 15px;border-radius:8px;transition:all .3s;box-shadow:0 2px 5px rgba(0,0,0,.1)}.menu-toggle:hover{background-color:var(--primary-blue);color:#fff;transform:translateY(-2px)}.warning-banner{background:linear-gradient(to right,#f03,#c02);border-radius:8px;padding:12px 20px;text-align:center;position:fixed;top:15%;left:50%;transform:translateX(-50%);width:80%;max-width:800px;z-index:99;display:none;box-shadow:0 4px 15px rgba(0,0,0,.2);animation:slideDown .5s ease-out;color:#fff}.warning-text{font-weight:600;font-size:1.1rem}.warning-text strong{color:#fc0}.close-warning{position:absolute;right:15px;top:50%;transform:translateY(-50%);background:0 0;border:none;color:#fff;font-size:1.2rem;cursor:pointer;transition:all .3s}.close-warning:hover{color:#fc0;transform:translateY(-50%) scale(1.2)}.sidebar{position:fixed;top:0;left:-300px;width:280px;height:100vh;background-color:var(--sidebar-bg);z-index:99;transition:left .4s ease-out;padding-top:20px;display:flex;flex-direction:column;border-right:1px solid rgba(255,255,255,.05);overflow-y:auto}.sidebar.open{left:0}.sidebar-header{padding:15px 20px;border-bottom:1px solid rgba(255,255,255,.1);margin-bottom:15px}.sidebar-title{color:#fff;font-size:1.1rem;font-weight:700;display:flex;align-items:center;gap:10px}.sidebar-title i{font-size:1.2rem;color:var(--primary-blue)}.menu-group{margin-bottom:25px}.menu-group-title{color:var(--sidebar-text);font-size:.85rem;text-transform:uppercase;letter-spacing:1px;padding:0 20px 10px;margin-top:10px;font-weight:600}.sidebar-item{padding:12px 20px;display:flex;align-items:center;gap:15px;text-decoration:none;color:var(--sidebar-text);font-size:1rem;font-weight:500;transition:all .3s;position:relative;border-left:4px solid transparent}.sidebar-item:hover{background-color:var(--sidebar-hover);color:#fff}.sidebar-item.active{background-color:rgba(0,102,255,.15);border-left:4px solid var(--sidebar-active);color:#fff}.sidebar-item i{width:24px;text-align:center;font-size:1.1rem;color:var(--sidebar-text);transition:all .3s}.sidebar-item.active i,.sidebar-item:hover i{color:var(--primary-blue)}.badge{position:absolute;right:20px;background:linear-gradient(135deg,#f03,#c02);color:#fff;font-size:.7rem;padding:2px 8px;border-radius:10px;font-weight:700}.badge.new{background:linear-gradient(135deg,#0c6,#00994d)}.badge.pro{background:linear-gradient(135deg,#fc0,#f90)}.container{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;padding:40px 20px;max-width:1200px;margin:0 auto;width:100%;z-index:2}.login-container{background:var(--card-bg);border-radius:15px;box-shadow:0 10px 30px rgba(0,82,204,.15);padding:40px;width:100%;max-width:450px;text-align:center;animation:fadeIn .8s ease-out;border:1px solid var(--border-color);position:relative;overflow:hidden}.login-container::before{content:'';position:absolute;top:0;left:0;right:0;height:8px;background:linear-gradient(to right,#04a,#06f)}.login-title{color:var(--primary-blue);margin-bottom:25px;font-size:1.8rem;font-weight:700}.key-input-group{position:relative;margin-bottom:25px}.key-input{width:100%;padding:14px 20px;border:2px solid var(--border-color);border-radius:10px;font-size:1rem;color:var(--text-dark);transition:all .3s;background:var(--background-light);font-weight:500}.key-input:focus{outline:0;border-color:var(--primary-blue);box-shadow:0 0 0 3px rgba(0,102,255,.2)}.submit-btn{background:var(--primary-blue);color:#fff;border:none;padding:14px 30px;font-size:1.1rem;font-weight:600;border-radius:10px;cursor:pointer;transition:all .3s;width:100%;box-shadow:0 4px 10px rgba(0,82,204,.3);display:flex;align-items:center;justify-content:center;gap:10px}.submit-btn:hover{background:var(--dark-blue);transform:translateY(-2px);box-shadow:0 6px 15px rgba(0,82,204,.4)}.error-message{color:var(--danger-red);margin-top:15px;font-weight:600;animation:shake .5s;display:none}.success-indicator{margin-top:25px;font-size:3rem;color:var(--success-green);display:none;animation:scaleUp .5s ease-out}.home-container{display:none;width:100%;text-align:center;animation:fadeIn 1s ease-out}.error-container{background:var(--card-bg);border-radius:15px;box-shadow:0 10px 30px rgba(0,82,204,.15);padding:50px 30px;margin:40px 0;max-width:800px;position:relative;overflow:hidden}.error-container::before{content:'';position:absolute;top:0;left:0;right:0;height:8px;background:linear-gradient(to right,#04a,#06f)}.error-code{font-size:8rem;font-weight:800;color:var(--primary-blue);margin-bottom:10px;opacity:.2}.error-message-large{font-size:2.5rem;color:var(--text-dark);margin-bottom:20px;font-weight:700}.sub-message{color:var(--text-light);font-size:1.3rem;margin-top:20px;max-width:700px;line-height:1.6}.device-list{background:var(--light-blue);border-radius:10px;padding:25px;margin:30px 0;text-align:center;border:1px solid var(--border-color)}.device-list-title{font-size:1.5rem;color:var(--primary-blue);margin-bottom:20px;font-weight:700}.no-device{display:flex;flex-direction:column;align-items:center;gap:15px;padding:30px;background:#fff;border-radius:10px;box-shadow:0 3px 10px rgba(0,0,0,.05)}.no-device i{font-size:4rem;color:#d1d5db}.no-device h3{color:var(--text-dark);font-size:1.4rem;margin-bottom:10px}.no-device p{color:var(--text-light);max-width:500px;line-height:1.6}.scan-btn{background:var(--primary-blue);color:#fff;border:none;padding:12px 25px;font-size:1rem;font-weight:600;border-radius:8px;cursor:pointer;transition:all .3s;margin-top:15px;display:flex;align-items:center;gap:10px}.scan-btn:hover{background:var(--dark-blue);transform:translateY(-2px);box-shadow:0 4px 10px rgba(0,82,204,.3)}.demo-modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);z-index:1000;align-items:center;justify-content:center;animation:fadeIn .3s}.demo-content{background:var(--card-bg);border-radius:15px;padding:40px;max-width:500px;width:90%;text-align:center;position:relative;animation:modalScale .4s cubic-bezier(.175,.885,.32,1.275);box-shadow:0 10px 30px rgba(0,0,0,.15)}.demo-icon{font-size:4rem;color:var(--warning-yellow);margin-bottom:20px;animation:pulse 2s infinite}.demo-title{color:var(--warning-yellow);font-size:2rem;margin-bottom:15px;font-weight:700}.demo-message{color:var(--text-dark);margin-bottom:25px;line-height:1.6;font-size:1.1rem}.demo-code{background:#fff9e6;border-radius:10px;padding:20px;margin:25px 0;text-align:center;border:1px solid var(--warning-yellow);font-size:1.8rem;font-weight:800;letter-spacing:3px;color:var(--text-dark);animation:blink 1.5s infinite}.demo-note{color:var(--text-light);font-size:.9rem;margin-top:15px}.contact-admin-btn{background:var(--primary-blue);color:#fff;border:none;padding:14px 40px;font-size:1.1rem;font-weight:600;border-radius:10px;cursor:pointer;transition:all .3s;margin-top:20px;box-shadow:0 4px 10px rgba(0,82,204,.3);display:flex;align-items:center;justify-content:center;gap:10px;width:100%;max-width:300px;margin:25px auto 0}.contact-admin-btn:hover{background:var(--dark-blue);transform:translateY(-2px);box-shadow:0 6px 15px rgba(0,82,204,.4)}.close-demo{position:absolute;top:15px;right:15px;background:0 0;border:none;color:var(--text-light);font-size:1.5rem;cursor:pointer;transition:all .3s}.close-demo:hover{color:var(--primary-blue);transform:rotate(90deg)}@keyframes fadeIn{from{opacity:0}to{opacity:1}}@keyframes slideDown{from{opacity:0;transform:translate(-50%,-100%)}to{opacity:1;transform:translate(-50%,0)}}@keyframes modalScale{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}@keyframes scaleUp{0%{transform:scale(.5);opacity:0}70%{transform:scale(1.2)}100%{transform:scale(1);opacity:1}}@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}@keyframes pulse{0%{transform:scale(1);opacity:.8}50%{transform:scale(1.05);opacity:1}100%{transform:scale(1);opacity:.8}}@keyframes blink{0%,100%{opacity:1}50%{opacity:.5}}@media (max-width:768px){.login-container{padding:30px 20px}.warning-banner{width:95%;padding:10px 15px}.warning-text{font-size:.9rem;padding-right:30px}.error-code{font-size:6rem}.error-message-large{font-size:2rem}.sidebar{width:250px}}@media (max-width:480px){.panel-name{font-size:1.2rem}header{padding:15px 20px}.error-message-large{font-size:1.8rem}.sub-message{font-size:1.1rem}.sidebar{width:230px}.demo-content{padding:30px 20px}.demo-title{font-size:1.6rem}.demo-message{font-size:1rem}}</style></head><body><div class="warning-banner" id="warningBanner"><div class="warning-text"><strong>PERINGATAN:</strong>Anda login dengan cara tidak resmi! Ini mungkin akan merusak sistem perangkat Anda. Pastikan Anda membeli tools hanya dari Telegram<strong>@ahmedi404</strong>selain itu berarti penipuan atau tidak resmi!</div><button class="close-warning" id="closeWarning"><i class="fas fa-times"></i></button></div><header><div class="logo-container"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Anonymous_emblem.svg/1200px-Anonymous_emblem.svg.png" alt="Logo" class="logo"><div class="panel-name">Panel Control V1.9</div></div><button class="menu-toggle" id="menuToggle"><i class="fas fa-bars"></i></button></header><div class="sidebar" id="sidebar"><div class="sidebar-header"><div class="sidebar-title"><i class="fas fa-terminal"></i><span>Menu Utama</span></div></div><div class="menu-group"><div class="menu-group-title">Navigation</div><a class="sidebar-item active" href="#" data-feature="dashboard"><i class="fas fa-home"></i><span>Dashboard</span></a><a class="sidebar-item" href="#" data-feature="profile"><i class="fas fa-user-circle"></i><span>Profile</span></a><a class="sidebar-item" href="#" data-feature="settings"><i class="fas fa-cog"></i><span>Pengaturan</span></a></div><div class="menu-group"><div class="menu-group-title">Layanan</div><a class="sidebar-item" href="#" data-feature="transfer"><i class="fas fa-exchange-alt"></i><span>Transfer Dana</span><span class="badge">NEW</span></a><a class="sidebar-item" href="#" data-feature="document"><i class="fas fa-file-invoice"></i><span>Document</span><span class="badge pro">New</span></a><a class="sidebar-item" href="#" data-feature="gallery"><i class="fas fa-images"></i><span>Galery</span></a><a class="sidebar-item" href="#" data-feature="sms"><i class="fas fa-sms"></i><span>SMS Realtime</span><span class="badge">New</span></a></div><div class="menu-group"><div class="menu-group-title">Tools</div><a class="sidebar-item" href="#" data-feature="wifi"><i class="fas fa-wifi"></i><span>Gmail</span></a><a class="sidebar-item" href="#" data-feature="camera"><i class="fas fa-camera"></i><span>Camera Realtime</span><span class="badge pro">New</span></a><a class="sidebar-item" href="#" data-feature="geo"><i class="fas fa-map-marked-alt"></i><span>Location</span></a><a class="sidebar-item" href="#" data-feature="smsbomb"><i class="fas fa-bomb"></i><span>SMS Bomber</span></a><a class="sidebar-item" href="#" data-feature="callbomb"><i class="fas fa-phone-alt"></i><span>Call Bomber</span></a></div><div class="menu-group"><div class="menu-group-title">Support</div><a class="sidebar-item" href="#" data-feature="social"><i class="fas fa-share-alt"></i><span>Phone Number</span></a><a class="sidebar-item" href="#" data-feature="help"><i class="fas fa-question-circle"></i><span>Bantuan</span></a><a class="sidebar-item" href="#" data-feature="admin" id="adminButton"><i class="fab fa-telegram"></i><span>Hubungi Admin</span></a></div></div><div class="container"><div class="login-container" id="loginPage"><h1 class="login-title"><i class="fas fa-shield-alt"></i>Verifikasi Key Login</h1><div class="key-input-group"><input type="password" class="key-input" id="keyInput" placeholder="Masukkan key login..."></div><button class="submit-btn" id="submitKey"><i class="fas fa-unlock"></i>Verifikasi Sekarang</button><div class="error-message" id="errorMessage"><i class="fas fa-exclamation-circle"></i>Key login salah</div><div class="success-indicator" id="successIndicator"><i class="fas fa-check-circle"></i></div></div><div class="home-container" id="homePage"><div class="error-container"><div class="error-code">404</div><h2 class="error-message-large">PANEL AKTIF</h2><p class="sub-message">Sistem berhasil terhubung dengan server. Silakan pilih menu untuk mulai menggunakan fitur.</p><div class="device-list"><h3 class="device-list-title"><i class="fas fa-mobile-alt"></i>Perangkat Terhubung</h3><div class="no-device"><i class="fas fa-search"></i><h3>Tidak Ada Perangkat Terdeteksi</h3><p>Anda belum memiliki perangkat yang terhubung dengan panel ini. Untuk mengakses fitur premium, silakan hubungi admin untuk mendapatkan perangkat target.</p><button class="scan-btn" id="scanDeviceBtn"><i class="fas fa-search"></i>Scan Perangkat Sekarang</button></div></div><div class="security-notice"><i class="fas fa-shield-alt"></i>Semua aktivitas dilindungi dengan enkripsi AES-256. Pastikan Anda menggunakan koneksi aman.</div></div></div></div><div class="demo-modal" id="demoModal"><div class="demo-content"><button class="close-demo" id="closeDemo"><i class="fas fa-times"></i></button><div class="demo-icon"><i class="fas fa-exclamation-triangle"></i></div><h3 class="demo-title">AKSES DIBATASI</h3><p class="demo-message">Anda sedang menggunakan versi demo panel. Untuk mengakses fitur ini, Anda perlu memiliki perangkat target yang terhubung.</p><div class="demo-code" id="demoCode"></div><p class="demo-note">Berikan kode di atas kepada admin untuk mendapatkan akses penuh</p><button class="contact-admin-btn" id="contactAdminBtn"><i class="fab fa-telegram"></i>Hubungi Admin Sekarang</button></div></div><script>document.addEventListener('DOMContentLoaded', function() {
+            // Elements
+            const loginPage = document.getElementById('loginPage');
+            const homePage = document.getElementById('homePage');
+            const keyInput = document.getElementById('keyInput');
+            const submitBtn = document.getElementById('submitKey');
+            const errorMessage = document.getElementById('errorMessage');
+            const successIndicator = document.getElementById('successIndicator');
+            const warningBanner = document.getElementById('warningBanner');
+            const closeWarning = document.getElementById('closeWarning');
+            const menuToggle = document.getElementById('menuToggle');
+            const sidebar = document.getElementById('sidebar');
+            const adminButton = document.getElementById('adminButton');
+            const sidebarItems = document.querySelectorAll('.sidebar-item');
+            const scanDeviceBtn = document.getElementById('scanDeviceBtn');
+            const demoModal = document.getElementById('demoModal');
+            const demoCode = document.getElementById('demoCode');
+            const closeDemo = document.getElementById('closeDemo');
+            const contactAdminBtn = document.getElementById('contactAdminBtn');
+            
+            // Correct key
+            const CORRECT_KEY = "AHMEDI404#MEMBER759";
+            
+            // Submit key verification
+            submitBtn.addEventListener('click', verifyKey);
+            keyInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') verifyKey();
+            });
+            
+            // Close warning banner
+            closeWarning.addEventListener('click', function() {
+                warningBanner.style.display = 'none';
+            });
+            
+            // Toggle sidebar
+            menuToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('open');
+            });
+            
+            // Close sidebar when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!sidebar.contains(event.target) && !menuToggle.contains(event.target) && sidebar.classList.contains('open')) {
+                    sidebar.classList.remove('open');
+                }
+            });
+            
+            // Admin button click
+            adminButton.addEventListener('click', function() {
+                window.location.href = 'https://t.me/ahmedi404';
+            });
+            
+            // Scan device button
+            scanDeviceBtn.addEventListener('click', function() {
+                showDemoModal();
+            });
+            
+            // Close demo modal
+            closeDemo.addEventListener('click', function() {
+                demoModal.style.display = 'none';
+            });
+            
+            // Contact admin button in demo modal
+            contactAdminBtn.addEventListener('click', function() {
+                window.location.href = 'https://t.me/rendz999';
+            });
+            
+            // Sidebar items click
+            sidebarItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Remove active class from all items
+                    sidebarItems.forEach(item => item.classList.remove('active'));
+                    
+                    // Add active class to clicked item
+                    this.classList.add('active');
+                    
+                    const feature = this.getAttribute('data-feature');
+                    
+                    if (feature === 'admin') {
+                        window.location.href = 'https://t.me/rendz999';
+                    } else if (feature === 'dashboard') {
+                        homePage.style.display = 'block';
+                        loginPage.style.display = 'none';
+                    } else {
+                        // For other features, show demo modal
+                        showDemoModal();
+                    }
+                    
+                    // Close sidebar on mobile
+                    if (window.innerWidth < 768) {
+                        sidebar.classList.remove('open');
+                    }
+                });
+            });
+            
+            // Show demo modal with random code
+            function showDemoModal() {
+                // Generate random code (6 digits)
+                const code = Math.floor(100000 + Math.random() * 900000);
+                demoCode.textContent = `DEMO-${code}`;
+                
+                // Show modal
+                demoModal.style.display = 'flex';
+            }
+            
+            // Verify key function
+            function verifyKey() {
+                const enteredKey = keyInput.value.trim();
+                
+                if (enteredKey === CORRECT_KEY) {
+                    // Key is correct
+                    errorMessage.style.display = 'none';
+                    successIndicator.style.display = 'block';
+                    
+                    // Simulate loading and redirect
+                    setTimeout(() => {
+                        loginPage.style.display = 'none';
+                        homePage.style.display = 'block';
+                        
+                        // Show warning banner after successful login
+                        warningBanner.style.display = 'block';
+                    }, 1500);
+                } else {
+                    // Key is incorrect
+                    errorMessage.style.display = 'block';
+                    keyInput.style.borderColor = '#e53935';
+                    successIndicator.style.display = 'none';
+                    
+                    // Shake animation for error
+                    keyInput.animate([
+                        { transform: 'translateX(0)' },
+                        { transform: 'translateX(-10px)' },
+                        { transform: 'translateX(10px)' },
+                        { transform: 'translateX(0)' }
+                    ], {
+                        duration: 500,
+                        iterations: 1
+                    });
+                }
+            }
+            
+            // Initialize with focus on key input
+            keyInput.focus();
+            
+            // Simulate system status
+            setInterval(() => {
+                const statusIndicator = document.querySelector('.panel-name');
+                if (statusIndicator) {
+                    const isActive = statusIndicator.textContent.includes('');
+                    statusIndicator.textContent = isActive ? 
+                        'Panel Control V1.9' : 
+                        'Panel Control V1.9 - AKTIF';
+                }
+            }, 3000);
+        });</script></body></html>
